@@ -1,0 +1,6 @@
+FROM docker:dind
+
+COPY zscaler-ca.cer /tmp/zscaler-ca.der
+RUN apk add --no-cache openssl \
+  && openssl x509 -inform DER -in /tmp/zscaler-ca.der -out /usr/local/share/ca-certificates/zscaler-ca.crt \
+  && update-ca-certificates

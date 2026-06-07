@@ -1,6 +1,8 @@
 services:
   jenkins-docker:
-    image: docker:dind
+    build:
+      context: .
+      dockerfile: Dockerfile.dind
     container_name: jenkins-docker
     privileged: true
     environment:
