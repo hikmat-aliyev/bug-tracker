@@ -1,17 +1,12 @@
 pipeline {
     agent any
 
-    environment {
-        GOCACHE = '/tmp/go-cache'
-        GOPATH  = '/tmp/go-path'
-    }
-
     stages {
         stage('Run backend unit tests') {
             agent {
                 docker {
                     image 'snakee/golang-junit:1.21'
-                    args '-v /etc/ssl/certs/ca-certificates.crt:/etc/ssl/certs/ca-certificates.crt:ro'
+                    args '-u root -v /etc/ssl/certs/ca-certificates.crt:/etc/ssl/certs/ca-certificates.crt:ro'
                     reuseNode true
                 }
             }
