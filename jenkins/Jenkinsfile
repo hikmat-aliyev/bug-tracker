@@ -6,7 +6,7 @@ pipeline {
             agent {
                 docker {
                     image 'snakee/golang-junit:1.21'
-                    args '-v /var/jenkins_home/go-cache:/.cache/go-build -v /etc/ssl/certs/ca-certificates.crt:/etc/ssl/certs/ca-certificates.crt:ro'
+                    args '-u root -v /var/jenkins_home/go-cache:/.cache/go-build -v /etc/ssl/certs/ca-certificates.crt:/etc/ssl/certs/ca-certificates.crt:ro'
                     reuseNode true
                 }
             }
