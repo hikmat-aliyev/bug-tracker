@@ -21,15 +21,17 @@ pipeline {
             agent {
                 docker {
                     image 'node:20-alpine'
+                    args '-v /etc/ssl/certs/ca-certificates.crt:/etc/ssl/certs/ca-certificates.crt:ro'
                     reuseNode true
                 }
             }
             steps {
-                dir('bugtracker-frontend')
-                sh '''
-                    npm ci
-                    npm test
-                '''
+                dir('bugtracker-frontend') {
+                    sh '''
+                        npm ci
+                        npm test
+                    '''
+                }
             }
         }
     }
