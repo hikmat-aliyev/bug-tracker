@@ -11,6 +11,7 @@ pipeline {
             agent {
                 docker {
                     image 'snakee/golang-junit:1.21'
+                    args '-v /etc/ssl/certs/ca-certificates.crt:/etc/ssl/certs/ca-certificates.crt:ro'
                     reuseNode true
                 }
             }
